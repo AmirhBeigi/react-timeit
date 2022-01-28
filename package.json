@@ -22,5 +22,8 @@
   "files": [
     "dist"
   ],
-  "types": "dist/index.d.ts"
+  "types": "dist/index.d.ts",
+  "dependencies": {
+    "react-jss": "^10.9.0"
+  }
 }
