@@ -2,7 +2,7 @@
 
 ### A time picker for your React app.
 
-![](./timiet.png)
+![](./timeit.png)
 
 # Install
 
