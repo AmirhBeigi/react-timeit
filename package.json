@@ -1,12 +1,16 @@
 {
   "name": "react-timeit",
-  "version": "1.1.0",
+  "version": "1.1.10",
   "description": "A time picker for your React app.",
   "scripts": {
     "rollup": "rollup -c"
   },
+  "repository": "git@github.com:paziresh24/react-timeit.git",
   "author": "https://github.com/AmirhBeigi",
   "license": "MIT",
+  "peerDependencies": {
+    "react": "^17.0.2"
+  },
   "devDependencies": {
     "@rollup/plugin-commonjs": "^21.0.1",
     "@rollup/plugin-node-resolve": "^13.1.3",

@@ -1,4 +1,4 @@
-import * as React from "react";
+import { useState, useEffect } from "react";
 import { createUseStyles } from "react-jss";
 
 type TimeColumn = {
@@ -10,69 +10,74 @@ type TimeColumn = {
   notShowExclude?: boolean;
 };
 
-const useStyles = createUseStyles({
-  control: {
-    display: "flex",
-    flexDirection: "column",
-    alignItems: "center",
-  },
-  control__time: {
-    cursor: "pointer",
-    transition: "opacity 0.5s",
-    "&:hover": {
-      opacity: 0.5,
+const useStyles = createUseStyles(
+  {
+    control: {
+      display: "flex",
+      flexDirection: "column",
+      alignItems: "center",
     },
-    "*": {
+    control__time: {
+      cursor: "pointer",
+      transition: "opacity 0.5s",
+      "&:hover": {
+        opacity: 0.5,
+      },
+    },
+    control__svg: {
       stroke: "var(--timeit-primary-color)",
     },
+    wrapper: {
+      position: "relative",
+      display: "flex",
+      flexDirection: "column",
+      alignItems: "center",
+      height: "128px",
+      width: "64px",
+      overflow: "hidden",
+      userSelect: "none",
+    },
+    selector: {
+      width: "100%",
+      height: "40px",
+      backgroundColor: "var(--timeit-primary-color)",
+      position: "absolute",
+      top: "39px",
+      borderRadius: "8px",
+    },
+    timeWrapper: {
+      width: "100%",
+      display: "flex",
+      flexDirection: "column",
+      alignItems: "center",
+      lineHeight: "40px",
+      fontSize: "20px",
+      transition: "transform 0.5s",
+      paddingTop: "40px",
+    },
+    time: {
+      zIndex: "1",
+      color: "var(--timeit-primary-color)",
+      opacity: "0.5",
+      transition: "color 0.5s",
+    },
+    selected: {
+      color: "#fff",
+      opacity: "1",
+    },
+    disabled: {
+      opacity: "0.2 !important",
+    },
   },
-  wrapper: {
-    position: "relative",
-    display: "flex",
-    flexDirection: "column",
-    alignItems: "center",
-    height: "128px",
-    width: "64px",
-    overflow: "hidden",
-    userSelect: "none",
-  },
-  selector: {
-    width: "100%",
-    height: "40px",
-    backgroundColor: "var(--timeit-primary-color)",
-    position: "absolute",
-    top: "39px",
-    borderRadius: "8px",
-  },
-  timeWrapper: {
-    width: "100%",
-    display: "flex",
-    flexDirection: "column",
-    alignItems: "center",
-    lineHeight: "40px",
-    fontSize: "20px",
-    transition: "transform 0.5s",
-    paddingTop: "40px",
-  },
-  time: {
-    zIndex: "1",
-    color: "var(--timeit-primary-color)",
-    opacity: "0.5",
-    transition: "color 0.5s",
-  },
-  selected: {
-    color: "#fff",
-    opacity: "1",
-  },
-  disabled: {
-    opacity: "0.2 !important",
-  },
-});
+  {
+    name: "timeit",
+  }
+);
 
 const TimeColumn = ({ start, end, setValue, value, exclude, notShowExclude }: TimeColumn) => {
   const classes = useStyles();
 
-  const [slecetorMove, setSlecetorMove] = React.useState<number>(+value ? +value : 0);
+  const [slecetorMove, setSlecetorMove] = useState<number>(+value ? +value : 0);
 
   const timeArray: (string | number)[] = [];
   for (let time = start; time <= end; time++) {
@@ -80,7 +85,7 @@ const TimeColumn = ({ start, end, setValue, value, exclude, notShowExclude }: Ti
     else timeArray.push(time);
   }
 
-  React.useEffect(() => {
+  useEffect(() => {
     let prev = slecetorMove;
     if (exclude?.includes(prev)) {
       while (exclude?.includes(prev)) {
@@ -90,7 +95,7 @@ const TimeColumn = ({ start, end, setValue, value, exclude, notShowExclude }: Ti
     }
   }, []);
 
-  React.useEffect(() => {
+  useEffect(() => {
     setValue(slecetorMove.toString().length === 1 ? `0${slecetorMove}` : slecetorMove.toString());
   }, [slecetorMove]);
 
@@ -156,6 +161,7 @@ const TimeColumn = ({ start, end, setValue, value, exclude, notShowExclude }: Ti
             strokeMiterlimit="10"
             strokeLinecap="round"
             strokeLinejoin="round"
+            className={classes.control__svg}
           />
         </svg>
       </div>
@@ -193,6 +199,7 @@ const TimeColumn = ({ start, end, setValue, value, exclude, notShowExclude }: Ti
             strokeMiterlimit="10"
             strokeLinecap="round"
             strokeLinejoin="round"
+            className={classes.control__svg}
           />
         </svg>
       </div>

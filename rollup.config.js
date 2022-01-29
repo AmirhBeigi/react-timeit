@@ -21,6 +21,7 @@ export default [
       },
     ],
     plugins: [resolve(), commonjs(), typescript({ tsconfig: "./tsconfig.json" })],
+    external: ["react"],
   },
   {
     input: "dist/esm/types/index.d.ts",

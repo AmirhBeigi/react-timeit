@@ -1,4 +1,4 @@
-import * as React from "react";
+import { useState, useEffect } from "react";
 import TimeColumn from "./atom/timeColumn";
 import { createUseStyles } from "react-jss";
 
@@ -10,21 +10,26 @@ type TimeitProps = {
   notShowExclude?: boolean;
 };
 
-const useStyles = createUseStyles({
-  wrapper: {
-    display: "flex",
-    direction: "ltr",
-    "&>*": {
-      margin: "0 5px",
-    },
-    "&>:last-child": {
-      marginRight: "0",
-    },
-    "&>:first-child": {
-      marginLeft: "0",
+const useStyles = createUseStyles(
+  {
+    wrapper: {
+      display: "flex",
+      direction: "ltr",
+      "&>*": {
+        margin: "0 5px",
+      },
+      "&>:last-child": {
+        marginRight: "0",
+      },
+      "&>:first-child": {
+        marginLeft: "0",
+      },
     },
   },
-});
+  {
+    name: "timeit",
+  }
+);
 
 const Timeit = ({
   onChange,
@@ -35,10 +40,10 @@ const Timeit = ({
 }: TimeitProps) => {
   const classes = useStyles();
 
-  const [hour, setHour] = React.useState(defualtValue ? defualtValue.split(":")[0] : "00");
-  const [minute, setMinute] = React.useState(defualtValue ? defualtValue.split(":")[1] : "00");
+  const [hour, setHour] = useState(defualtValue ? defualtValue.split(":")[0] : "00");
+  const [minute, setMinute] = useState(defualtValue ? defualtValue.split(":")[1] : "00");
 
-  React.useEffect(() => {
+  useEffect(() => {
     onChange && onChange(`${hour}:${minute}`);
   }, [hour, minute]);
 
