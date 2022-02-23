@@ -4,7 +4,7 @@ import { createUseStyles } from "react-jss";
 
 type TimeitProps = {
   onChange?: (value: string) => any;
-  defualtValue?: string;
+  defaultValue?: string;
   minuteExclude?: Array<number>;
   hourExclude?: Array<number>;
   notShowExclude?: boolean;
@@ -33,15 +33,15 @@ const useStyles = createUseStyles(
 
 const Timeit = ({
   onChange,
-  defualtValue,
+  defaultValue,
   minuteExclude,
   hourExclude,
   notShowExclude,
 }: TimeitProps) => {
   const classes = useStyles();
 
-  const [hour, setHour] = useState(defualtValue ? defualtValue.split(":")[0] : "00");
-  const [minute, setMinute] = useState(defualtValue ? defualtValue.split(":")[1] : "00");
+  const [hour, setHour] = useState(defaultValue ? defaultValue.split(":")[0] : "00");
+  const [minute, setMinute] = useState(defaultValue ? defaultValue.split(":")[1] : "00");
 
   useEffect(() => {
     onChange && onChange(`${hour}:${minute}`);
