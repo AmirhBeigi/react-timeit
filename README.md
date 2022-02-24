@@ -39,13 +39,13 @@ function App() {
 }
 ```
 
-### defualtValue
+### defaultValue
 
 ```tsx
 ...
 
 function App() {
-  return <Timeit defualtValue='06:10' />
+  return <Timeit defaultValue='06:10' />
 }
 ```
 
