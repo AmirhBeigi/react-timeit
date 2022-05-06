@@ -5,11 +5,11 @@
   "scripts": {
     "rollup": "rollup -c"
   },
-  "repository": "git@github.com:paziresh24/react-timeit.git",
+  "repository": "git@github.com:AmirhBeigi/react-timeit.git",
   "author": "https://github.com/AmirhBeigi",
   "license": "MIT",
   "peerDependencies": {
-    "react": "^17.0.2"
+    "react": "^17.0.0 || ^18.0.0"
   },
   "devDependencies": {
     "@rollup/plugin-commonjs": "^21.0.1",
